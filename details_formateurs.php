@@ -34,6 +34,7 @@ if (isset($_POST["btn-deconnexion"])){
 <body>
 
 
+
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container px-5">
@@ -49,6 +50,8 @@ if (isset($_POST["btn-deconnexion"])){
         </div>
     </div>
 </nav>
+
+
 <!-------------------------SQL POUR INFOS PERSONNELLES------------------------>
 
 <?php
@@ -78,7 +81,9 @@ if($db){
 
 <div class="container mt-5">
     <div class="row">
+
         <h2 class="text-center mb-5">Les formateurs</h2>
+
 
         <!----------------------IDENTIFIANTS----------------------->
 
@@ -91,6 +96,7 @@ if($db){
                         <div class="card-header"><h2><?= $infosPersos["nom_formateur"] . "<br>" . $infosPersos["prenom_formateur"]?></h2></div>
                         <div class="card-body">
                             <h2><?= $infosPersos["matiere_formateur"]?></h2>
+
                             <p class="card-text">
                                 <img src="<?= $infosPersos["avatar_formateur"]?>">
                             </p>
@@ -104,6 +110,11 @@ if($db){
                         </form>
                         </div>
 
+
+                            <p class="card-text">PHOTO</p>
+                        </div>
+                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="details_formateurs.php">Plus d'infos</a></div>
+
                     </div>
                 </div>
 
@@ -113,6 +124,7 @@ if($db){
 
     </div>
 </div>
+
 
 
 
@@ -135,7 +147,11 @@ if($db){
 
 <!-- Footer-->
 <footer class="py-5 bg-dark">
+
     <div class="container px-4 px-lg-5 w-100"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+
+    <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+
 </footer>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
