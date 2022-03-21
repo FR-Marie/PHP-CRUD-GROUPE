@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-?>
+if(isset($_SESSION["email"])){
 
-<?php
+
 if (isset($_POST["btn-deconnexion"])){
     echo "btn ok";
     session_unset();
@@ -19,7 +19,13 @@ if (isset($_POST["btn-deconnexion"])){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Small Business - Start Bootstrap Template</title>
+
+    <!-----bootstrap---->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Accueil</title>
+
+
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -52,17 +58,16 @@ if (isset($_POST["btn-deconnexion"])){
     <div class="row gx-4 gx-lg-5 align-items-center my-5">
         <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/900x400/dee2e6/6c757d.jpg" alt="..." /></div>
         <div class="col-lg-5">
-            <h1 class="font-weight-light">
                 <?php
                 if (isset($_SESSION["email"])){
                     ?>
                     <div>
-                        <p class="alert alert info">Bienvenue <?= $_SESSION["email"] ?></p>
+                        <h1 class="text-info">Bienvenue <?=$_SESSION["email"]?></h1>
                     </div>
                     <?php
                 }
                 ?>
-            </h1>
+
             <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
             <form method="POST">
                 <button type="submit" name="btn-deconnexion">DECONNEXION</button>
@@ -107,11 +112,20 @@ if (isset($_POST["btn-deconnexion"])){
     </div>
 </div>
 
-<!------------------------PHP------------------------->
+<!-----------------------SI SESSION PAS OK------------------------->
+<?php
+
+}else{
+    ?>
+    <div class="alert alert-warning text-light">
+        <p>vous devez être connecté pour voir cette page!</p>
+        <button><a href="index.php">Se connecter</a></button>
+    </div>
+    <?php
+}
 
 
-
-
+?>
 
 <!-- Footer-->
 <footer class="py-5 bg-dark">
