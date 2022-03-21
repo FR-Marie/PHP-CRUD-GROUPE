@@ -19,12 +19,12 @@ session_start();
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container px-5">
-        <a class="navbar-brand" href="#!">Start Bootstrap</a>
+        <a class="navbar-brand" href="#!">Lycée Henri IV</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">bout</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Services</a></li>
             </ul>
@@ -35,7 +35,7 @@ session_start();
 <div class="container px-4 px-lg-5">
     <!-- Heading Row-->
     <div class="row gx-4 gx-lg-5 align-items-center my-5">
-        <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/900x400/dee2e6/6c757d.jpg" alt="..." /></div>
+        <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="assets/logo-lycee-henri4-500.jpg" alt="..." /></div>
         <div class="col-lg-5">
             <h1 class="font-weight-light">Business Name or Tagline</h1>
             <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
