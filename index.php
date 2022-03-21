@@ -10,13 +10,21 @@ session_start();
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Small Business - Start Bootstrap Template</title>
+
+        <!-----bootstrap---->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+        <title>Connexion</title>
+
+
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body>
+
+
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-5">
@@ -108,8 +116,8 @@ session_start();
                 $passwordAdmin = trim(htmlspecialchars($_POST['password']));
 
                 //Debug
-                var_dump($emailAdmin);
-                var_dump($passwordAdmin);
+                //var_dump($emailAdmin);
+                //var_dump($passwordAdmin);
 
                 //Requete avec le prediquats AND = &&
                 $sql = "SELECT * FROM admins WHERE email = ? AND password = ?";
@@ -130,21 +138,21 @@ session_start();
                     //PDOStatement::fetch — Récupère la ligne suivante d'un jeu de résultats PDO
                     $entree = $connexion->fetch();
 
-                    var_dump($connexion->rowCount());
+                    //var_dump($connexion->rowCount());
 
                     //si résultat true=>
                     if($entree == true){
                         $email = $entree["email"];
                         $password = $entree["password"];
 
-                        var_dump($email);
-                        var_dump($password);
+                        //var_dump($email);
+                        //var_dump($password);
 
                         ///////////////-----SI C'EST OK--------
                         if ($emailAdmin === $email && $passwordAdmin === $password){
                             //Création et stockage de la "variable de connexion" avec $_SESSION et redirection sur la page d'accueil
                             $_SESSION["email"] = $emailAdmin;
-                            header("location: accueil.php");
+                            header("location:accueil.php");
                         }else{
                             ?>
                             <div>
@@ -176,7 +184,7 @@ session_start();
         ?>
 
 
-        <!-----------------------------------FONCTION CONNEXION DU BOUTON APPELEE------------------------------------>
+<!-----------------------------------FONCTION CONNEXION DU BOUTON APPELEE------------------------------------>
         <?php
 
         if (isset($_POST["btn-connexion"])){
@@ -184,14 +192,6 @@ session_start();
         }
 
         ?>
- 
-
-
-
-
-
-
-
 
 
         <!-- Footer-->
