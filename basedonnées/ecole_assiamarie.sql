@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 21 mars 2022 à 10:27
+-- Généré le : lun. 21 mars 2022 à 10:36
 -- Version du serveur : 8.0.27
 -- Version de PHP : 7.4.26
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `admins` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id_admin`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `admins`
@@ -60,8 +60,8 @@ CREATE TABLE IF NOT EXISTS `etudiants` (
   `telephone_etudiant` varchar(255) NOT NULL,
   `email_etudiant` varchar(255) NOT NULL,
   `age_etudiant` int NOT NULL,
-  `formation_etudiant` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `formation_etudiant` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -72,16 +72,16 @@ CREATE TABLE IF NOT EXISTS `etudiants` (
 DROP TABLE IF EXISTS `formateurs`;
 CREATE TABLE IF NOT EXISTS `formateurs` (
   `id_formateur` int NOT NULL,
-  `nom_formateur` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `prenom_formateur` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `adresse_formateur` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `avatar_formateur` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nom_formateur` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `prenom_formateur` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `adresse_formateur` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `avatar_formateur` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `date_naissance_formateur` datetime NOT NULL,
-  `telephone_formateur` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `email_formateur` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `telephone_formateur` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `email_formateur` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `age_formateur` int NOT NULL,
-  `matiere_formateur` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `matiere_formateur` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
