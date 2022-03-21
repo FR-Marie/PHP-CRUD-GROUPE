@@ -97,7 +97,7 @@ if (isset($_POST["btn-deconnexion"])){
                     <h2 class="card-title">Card Two</h2>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
                 </div>
-                <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+                <div class="card-footer"><a class="btn btn-primary btn-sm" href="details_formateurs.php">Formateurs</a></div>
             </div>
         </div>
         <div class="col-md-4 mb-5">
