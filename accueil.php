@@ -3,6 +3,15 @@ session_start();
 
 ?>
 
+<?php
+if (isset($_POST["btn-deconnexion"])){
+    echo "btn ok";
+    session_unset();
+    session_destroy();
+    header("location: index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,15 +64,11 @@ session_start();
                 ?>
             </h1>
             <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
-            <a class="btn btn-primary" href="#" name="btn-deconnexion">DECONNEXION</a>
+            <form method="POST">
+                <button type="submit" name="btn-deconnexion">DECONNEXION</button>
+            </form>
 
-            <?php
-            if (isset($_POST["btn-deconnexion"])){
-                session_unset();
-                session_destroy();
-                header("location:index.php");
-            }
-            ?>
+
         </div>
     </div>
     <!-- Call to Action -->
@@ -101,6 +106,13 @@ session_start();
         </div>
     </div>
 </div>
+
+<!------------------------PHP------------------------->
+
+
+
+
+
 <!-- Footer-->
 <footer class="py-5 bg-dark">
     <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
