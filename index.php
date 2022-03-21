@@ -17,6 +17,8 @@ session_start();
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body>
+
+
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-5">
@@ -108,8 +110,8 @@ session_start();
                 $passwordAdmin = trim(htmlspecialchars($_POST['password']));
 
                 //Debug
-                var_dump($emailAdmin);
-                var_dump($passwordAdmin);
+                //var_dump($emailAdmin);
+                //var_dump($passwordAdmin);
 
                 //Requete avec le prediquats AND = &&
                 $sql = "SELECT * FROM admins WHERE email = ? AND password = ?";
@@ -130,21 +132,21 @@ session_start();
                     //PDOStatement::fetch — Récupère la ligne suivante d'un jeu de résultats PDO
                     $entree = $connexion->fetch();
 
-                    var_dump($connexion->rowCount());
+                    //var_dump($connexion->rowCount());
 
                     //si résultat true=>
                     if($entree == true){
                         $email = $entree["email"];
                         $password = $entree["password"];
 
-                        var_dump($email);
-                        var_dump($password);
+                        //var_dump($email);
+                        //var_dump($password);
 
                         ///////////////-----SI C'EST OK--------
                         if ($emailAdmin === $email && $passwordAdmin === $password){
                             //Création et stockage de la "variable de connexion" avec $_SESSION et redirection sur la page d'accueil
                             $_SESSION["email"] = $emailAdmin;
-                            header("location: accueil.php");
+                            header("location:accueil.php");
                         }else{
                             ?>
                             <div>
