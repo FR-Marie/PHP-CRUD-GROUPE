@@ -122,9 +122,9 @@ if (isset($_POST["btn-deconnexion"])){
         </form>
 
         <!---------BTN SUPPRIMER-------->
-        <form action="" method="POST" class="">
-            <button type="submit" name="btn-supprimer-formateur" class="btn btn-outline-danger mb-5">Supprimer</button>
-        </form>
+            <div>
+                <a class="btn btn-outline-dark mb-5" href="supprimer_formateur.php?id_formateur=<?=$details["id_formateur"]?>">Supprimer ce formateur</a>
+            </div>
         </div>
 
         <div>

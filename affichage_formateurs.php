@@ -106,7 +106,9 @@ if($db){
                         <div class="card-footer d-flex">
                         <div><a class="btn btn-secondary btn-sm me-2" href="details_formateurs.php?id_formateur=<?=$infosPersos["id_formateur"]?>">Plus d'infos</a></div>
                         <form method="POST">
-                            <div><button type="submit" name="supprimer" class="btn btn-dark btn-sm">Supprimer</button></div>
+                            <div>
+                                <a class="btn btn-dark mb-5 btn-sm" href="supprimer_formateur.php?id_formateur=<?=$infosPersos["id_formateur"]?>">Supprimer</a>
+                            </div>
                         </form>
                         </div>
                         </div>
