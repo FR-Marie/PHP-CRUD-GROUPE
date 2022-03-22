@@ -118,7 +118,7 @@ if (isset($_POST["btn-deconnexion"])){
         <div class="d-flex justify-content-center mt-4">
         <!---------BTN EDITER-------->
         <form action="" method="POST" class="me-3">
-            <button type="submit" name="btn-editer-formateur" class="btn btn-outline-warning mb-5">Editer</button>
+            <a class="btn btn-outline-warning mb-5" href="editer_formateur.php?id_formateur=<?=$details["id_formateur"]?>">Editer</a>
         </form>
 
         <!---------BTN SUPPRIMER-------->

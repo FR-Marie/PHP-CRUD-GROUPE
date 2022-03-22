@@ -119,6 +119,14 @@ if($db){
     </div>
 </div>
 
+<div>
+    <div class="d-flex justify-content-around">
+        <a href="#" class="btn btn-outline-info mb-5"> Ajouter formateur</a>
+        <a href="#" class="btn btn-outline-info mb-5"> Retour accueil</a>
+    </div>
+
+</div>
+
 
 <!-----------------------SI SESSION PAS OK------------------------->
 <?php
@@ -137,9 +145,6 @@ if($db){
 
 <!-- Footer-->
 <footer class="py-5 bg-dark">
-
-    <div class="container px-4 px-lg-5 w-100"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
-
     <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
 
 </footer>
