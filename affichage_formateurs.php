@@ -78,8 +78,14 @@ if($db){
 
 
 <!-------------------------AFFICHAGE INFOS PERSONNELLES------------------------>
-
 <div class="container mt-5">
+    <div class="d-flex justify-content-around">
+        <a href="ajouter_formateur.php" class="btn btn-outline-info mb-5"> Ajouter formateur</a>
+    </div>
+
+</div>
+
+<div class="container mt-1">
     <div class="row">
 
         <h2 class="text-center mb-5">Les formateurs</h2>
@@ -119,14 +125,6 @@ if($db){
         ?>
 
     </div>
-</div>
-
-<div>
-    <div class="d-flex justify-content-around">
-        <a href="#" class="btn btn-outline-info mb-5"> Ajouter formateur</a>
-        <a href="#" class="btn btn-outline-info mb-5"> Retour accueil</a>
-    </div>
-
 </div>
 
 
