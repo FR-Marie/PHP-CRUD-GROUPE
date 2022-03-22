@@ -52,20 +52,90 @@ if (isset($_POST["btn-deconnexion"])){
 </nav>
 
 
+    <?php
+    $user = "root";
+    $pass = "";
+
+    try {
+        $db = new PDO("mysql:host=localhost;dbname=ecole_assiamarie;charset=UTF8", $user, $pass);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //echo "connexion à la BD réussie";
+
+    }catch (PDOException $exception){
+        //echo "Echec de la connexion à la BD" . $exception->getMessage();
+        die();
+    }
+
+
+
+    if($db){
+        $sql = "SELECT * FROM formateurs WHERE id_formateur = ?";
+        $produitID = $_GET["id_formateur"];
+
+        $request = $db->prepare($sql);
+        $request->bindParam(1, $produitID);
+
+        $request->execute();
+
+        $details = $request->fetch(PDO::FETCH_ASSOC);
+
+        $dateDeNaissance = new DateTime($details["date_naissance_formateur"]);
+    }
+    ?>
+
+</div>
+</div>
+
+
 <?php
-$user = "root";
-$pass = "";
 
-try {
-    $db = new PDO("mysql:host=localhost;dbname=ecole_assiamarie;charset=UTF8", $user, $pass);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //echo "connexion à la BD réussie";
 
-}catch (PDOException $exception){
-    //echo "Echec de la connexion à la BD" . $exception->getMessage();
-    die();
-}
 ?>
+
+<div class="container-fluid text-center mt-5">
+    <div class="row">
+
+        <h2 class=""> <?= $details["nom_formateur"] ." " .$details["prenom_formateur"] ?> </h2>
+        <h3> <?= $details["matiere_formateur"] ?></h3>
+
+        <div class="">
+            <img src="<?= $details["avatar_formateur"] ?>" alt="<?= $details["nom_formateur"] ?>" title="<?= $details["nom_formateur"] ?>">
+        </div>
+
+        <div class="">
+            <span>Date de naissance: </span><?= $dateDeNaissance->format("d-m-Y") . " (" . $details["age_formateur"] . " ans)"?>
+        </div>
+        <div class="">
+            <span>Email: </span><?= $details["email_formateur"]?>
+        </div>
+        <div class="">
+            <span>Téléphone: </span><?= $details["telephone_formateur"]?>
+        </div>
+        <div class="">
+            <span>Adresse: </span><?= $details["adresse_formateur"]?>
+        </div>
+
+        <div class="d-flex justify-content-center mt-4">
+        <!---------BTN EDITER-------->
+        <form action="" method="POST" class="me-3">
+            <button type="submit" name="btn-editer-formateur" class="btn btn-outline-warning mb-5">Editer</button>
+        </form>
+
+        <!---------BTN SUPPRIMER-------->
+        <form action="" method="POST" class="">
+            <button type="submit" name="btn-supprimer-formateur" class="btn btn-outline-danger mb-5">Supprimer</button>
+        </form>
+        </div>
+
+        <div>
+            <a class="btn btn-outline-info mb-5" href="affichage_formateurs.php">Retour</a>
+        </div>
+
+
+
+
+    </div>
+</div>
 
 <!-----------------------SI SESSION PAS OK------------------------->
 <?php

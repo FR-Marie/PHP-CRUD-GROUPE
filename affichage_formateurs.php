@@ -23,7 +23,7 @@ if (isset($_POST["btn-deconnexion"])){
     <!-----bootstrap---->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Liste formateurs</title>
+    <title>liste formateurs</title>
 
 
     <!-- Favicon-->
@@ -104,7 +104,7 @@ if($db){
 
 
                         <div class="card-footer d-flex">
-                        <div><a class="btn btn-secondary btn-sm me-2" href="details_formateurs.php">Plus d'infos</a></div>
+                        <div><a class="btn btn-secondary btn-sm me-2" href="details_formateurs.php?id_formateur=<?=$infosPersos["id_formateur"]?>">Plus d'infos</a></div>
                         <form method="POST">
                             <div><button type="submit" name="supprimer" class="btn btn-dark btn-sm">Supprimer</button></div>
                         </form>
