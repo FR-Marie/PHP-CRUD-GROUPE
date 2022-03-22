@@ -52,6 +52,8 @@ if (isset($_POST["btn-deconnexion"])){
 </nav>
 
 
+<!-------------------------SQL POUR INFOS PERSONNELLES------------------------>
+
 <?php
 $user = "root";
 $pass = "";
@@ -65,7 +67,58 @@ try {
     //echo "Echec de la connexion à la BD" . $exception->getMessage();
     die();
 }
+
+
+if($db){
+    $sql = "SELECT * FROM formateurs";
+    $statement = $db->query($sql);
+
+}
 ?>
+
+
+<!-------------------------AFFICHAGE INFOS PERSONNELLES------------------------>
+
+<div class="container mt-5">
+    <div class="row">
+
+        <h2 class="text-center mb-5">Les formateurs</h2>
+
+
+        <!----------------------IDENTIFIANTS----------------------->
+
+            <?php
+            foreach ($statement as $infosPersos){
+            ?>
+
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <div class="card-header"><h2><?= $infosPersos["nom_formateur"] . "<br>" . $infosPersos["prenom_formateur"]?></h2></div>
+                        <div class="card-body">
+                            <h2><?= $infosPersos["matiere_formateur"]?></h2>
+
+                            <p class="card-text">
+                                <img src="<?= $infosPersos["avatar_formateur"]?>">
+                            </p>
+                        </div>
+
+
+                        <div class="card-footer d-flex">
+                        <div><a class="btn btn-secondary btn-sm me-2" href="details_formateurs.php">Plus d'infos</a></div>
+                        <form method="POST">
+                            <div><button type="submit" name="supprimer" class="btn btn-dark btn-sm">Supprimer</button></div>
+                        </form>
+                        </div>
+                        </div>
+                </div>
+
+        <?php
+        }
+        ?>
+
+    </div>
+</div>
+
 
 <!-----------------------SI SESSION PAS OK------------------------->
 <?php
@@ -85,6 +138,8 @@ try {
 <!-- Footer-->
 <footer class="py-5 bg-dark">
 
+    <div class="container px-4 px-lg-5 w-100"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+
     <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
 
 </footer>
@@ -94,3 +149,4 @@ try {
 <script src="js/scripts.js"></script>
 </body>
 </html>
+
