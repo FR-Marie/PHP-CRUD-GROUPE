@@ -36,16 +36,17 @@ if (isset($_POST["btn-deconnexion"])){
 
 
 <!-- Responsive navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4">
     <div class="container px-5">
-        <a class="navbar-brand" href="#!">LYCEE HENRI-IV</a>
+        <a class="navbar-brand" href="#!">☼ LYCEE HENRI-IV ☼</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="accueil.php">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Connexion</a></li>
+                <li class="nav-item"><a class="nav-link" href="affichage_admins.php">Admins</a></li>
+                <li class="nav-item"><a class="nav-link" href="affichage_formateurs.php">Formateurs</a></li>
+                <li class="nav-item"><a class="nav-link" href="eleves.php">Eleves</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Services</a></li>
             </ul>
         </div>
     </div>
@@ -61,52 +62,54 @@ if (isset($_POST["btn-deconnexion"])){
                 <?php
                 if (isset($_SESSION["email"])){
                     ?>
-                    <div>
+                    <div class="bg-dark p-5 text-center">
                         <h1 class="text-info">Bienvenue <?=$_SESSION["email"]?></h1>
-                    </div>
+
                     <?php
                 }
                 ?>
 
-            <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
+            <p class="bg-secondary p-3 text-white rounded">This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
             <form method="POST">
-                <button type="submit" name="btn-deconnexion">DECONNEXION</button>
+                <button type="submit" class="btn btn-outline-info bg-dark text-info rounded" name="btn-deconnexion">DECONNEXION</button>
             </form>
+
+             </div>
 
 
         </div>
     </div>
     <!-- Call to Action -->
-    <div class="card text-white bg-secondary my-5 py-4 text-center">
+    <div class="card text-white bg-dark my-5 py-4 text-center">
         <div class="card-body"><p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p></div>
     </div>
     <!-- Content Row-->
     <div class="row gx-4 gx-lg-5">
         <div class="col-md-4 mb-5">
-            <div class="card h-100">
+            <div class="card h-100 bg-secondary text-white">
                 <div class="card-body">
-                    <h2 class="card-title">ADMINS</h2>
+                    <h2 class="card-title p-2">ADMINS</h2>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
                 </div>
-                <div class="card-footer"><a class="btn btn-info btn-sm" href="affichage_admins.php">Gérer admins</a></div>
+                <div class="card-footer p-3"><a class="btn btn-info btn-sm" href="affichage_admins.php">Gérer admins</a></div>
             </div>
         </div>
         <div class="col-md-4 mb-5">
-            <div class="card h-100">
+            <div class="card h-100 bg-secondary text-white">
                 <div class="card-body">
-                    <h2 class="card-title">FORMATEURS</h2>
+                    <h2 class="card-title p-2">FORMATEURS</h2>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
                 </div>
-                <div class="card-footer"><a class="btn btn-info btn-sm" href="affichage_formateurs.php">Gérer formateurs</a></div>
+                <div class="card-footer p-3"><a class="btn btn-info btn-sm" href="affichage_formateurs.php">Gérer formateurs</a></div>
             </div>
         </div>
         <div class="col-md-4 mb-5">
-            <div class="card h-100">
+            <div class="card h-100 bg-secondary text-white">
                 <div class="card-body">
-                    <h2 class="card-title">Card Three</h2>
+                    <h2 class="card-title p-2">ETUDIANTS</h2>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
                 </div>
-                <div class="card-footer"><a class="btn btn-primary btn-sm" href="eleves.php">Eleves Info</a></div>
+                <div class="card-footer p-3"><a class="btn btn-info btn-sm" href="eleves.php">Gérer étudiants</a></div>
             </div>
         </div>
     </div>
@@ -129,7 +132,22 @@ if (isset($_POST["btn-deconnexion"])){
 
 <!-- Footer-->
 <footer class="py-5 bg-dark">
-    <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-5">
+            <a class="navbar-brand" href="#!">☼ LYCEE HENRI-IV ☼</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="accueil.php">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="affichage_admins.php">Admins</a></li>
+                    <li class="nav-item"><a class="nav-link" href="affichage_formateurs.php">Formateurs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="eleves.php">Eleves</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container px-4 px-lg-5 mt-4"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
 </footer>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
