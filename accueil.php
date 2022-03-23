@@ -106,6 +106,7 @@ if (isset($_POST["btn-deconnexion"])){
                     <h2 class="card-title">Card Three</h2>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
                 </div>
+                <div class="card-footer"><a class="btn btn-primary btn-sm" href="eleves.php">Eleves Info</a></div>
             </div>
         </div>
     </div>
