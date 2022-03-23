@@ -69,24 +69,7 @@ try {
 
 ?>
 <!-----------------------------SI LA CO AVEC LA DB EST OK => TRAITEMENT-------------------------------->
-<?php
 
-if($db){
-    $sql = "SELECT * FROM formateurs WHERE id_formateur = ?";
-    $formateurID = $_GET["id_formateur"];
-
-    $request = $db->prepare($sql);
-    $request->bindParam(1, $formateurID);
-
-    $request->execute();
-
-    $formateur_edit = $request->fetch(PDO::FETCH_ASSOC);
-}
-
-?>
-
-<!------------------SUPPRESSION DU PRODUIT------------------>
-<!---------------------------REQUETE SQL PELUCHES----------------------------->
 <?php
 if($db){
     $sql = "SELECT * FROM formateurs WHERE id_formateur = ?";
