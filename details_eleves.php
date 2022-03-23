@@ -42,8 +42,8 @@ if (isset($_POST["btn-deconnexion"])){
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">bout</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="accueil.php">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">Connexion</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Services</a></li>
             </ul>
@@ -70,8 +70,24 @@ try {
 
 
 if($db){
-    $sql = "SELECT * FROM formateurs";
-    $statement = $db->query($sql);
+    
+    
+      //Requète SQL de selection des produits
+      $sql = "SELECT * FROM etudiants WHERE id_etudiant = ?";
+
+      $id_etudiant = $_GET['id_etudiant'];
+
+      //Requète préparée = PDO::prepare — Prépare une requête à l'exécution et retourne un objet
+      //https://www.php.net/manual/fr/pdo.prepare.php
+      $request = $db->prepare($sql);
+      //Lié les paramètres = 1 = ? dans = sql : ca valeur est id recuperer dans URL grace a $_GET['id_produit']
+      $request->bindParam(1, $id_etudiant);
+
+      //Execution de la requète(un tableau de string) execute(array)
+      $request->execute();
+      //Retourne un tableau associatif de resultats et on le stock dans une variable sous forme  cle/valeur
+      $details = $request->fetch(PDO::FETCH_ASSOC);
+      $dateNaissance=new \DateTime($details["date_naissance_etudiant"]);
 
 }
 ?>
@@ -79,48 +95,53 @@ if($db){
 
 <!-------------------------AFFICHAGE INFOS PERSONNELLES------------------------>
 
-<div class="container mt-5">
+<div class="container text-center justify-content-center mt-5">
     <div class="row">
 
-        <h2 class="text-center mb-5">Les formateurs</h2>
+     
 
 
         <!----------------------IDENTIFIANTS----------------------->
 
-            <?php
-            foreach ($statement as $infosPersos){
-            ?>
-
-                <div class="col-md-4 mb-5">
+          
+                <div class="mb-5 w-50 m-auto">
                     <div class="card h-100">
-                        <div class="card-header"><h2><?= $infosPersos["nom_formateur"] . "<br>" . $infosPersos["prenom_formateur"]?></h2></div>
+                        <div class="card-header"><h2><?= $details["nom_etudiant"] . "<br>" . $details["prenom_etudiant"]?></h2></div>
                         <div class="card-body">
-                            <h2><?= $infosPersos["matiere_formateur"]?></h2>
+                            <h2><?= $details["formation_etudiant"]?></h2>
 
                             <p class="card-text">
-                                <img src="<?= $infosPersos["avatar_formateur"]?>">
+                                <img src="<?= $details["avatar_etudiant"]?>">
                             </p>
+                            <b class="text-dark">Adresse: </b><p class="text-dark"><?= $details["adresse_etudiant"]?></p>
+                            <b class="text-dark">N° téléphone:</b> <p class="text-dark"><?= $details["telephone_etudiant"]?></p>
+                            <b class="text-dark">Email: </b> <p class="text-dark"><?= $details["email_etudiant"]?></p>
+                            <b class="text-dark">Age:  </b> <p class="text-dark"><?= $details["age_etudiant"]?> ans</p>
+                            <b class="text-dark">Date de naissance: </b> <p class="text-dark"><?= $dateNaissance->format('d-m-Y')?></p>
+                           
                         </div>
 
+                        <div class ="card-footer d-flex text-center">
+                        
+                                      
 
-                        <div class="card-footer d-flex">
-                        <div><a class="btn btn-secondary btn-sm me-2" href="details_formateurs.php">Plus d'infos</a></div>
+                        
+                            <div><a href="editer_eleves.php?id_etudiant=<?=$details['id_etudiant']?>"class="btn btn-secondary btn-sm me-2">Editer</a></div>
+                        
                         <form method="POST">
-                            <div><button type="submit" name="supprimer" class="btn btn-dark btn-sm">Supprimer</button></div>
+                            <div><button type="submit" name="supprimer" class="btn btn-dark btn-sm me-2">Supprimer</button></div>
                         </form>
-                        </div>
 
-
-                            <p class="card-text">PHOTO</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="details_formateurs.php">Plus d'infos</a></div>
+                        <div>
+                
+                        <a class="btn btn-primary btn-sm" href="eleves.php">Retour</a>
+                    </div>
+                    </div>
 
                     </div>
                 </div>
 
-        <?php
-        }
-        ?>
+     
 
     </div>
 </div>
@@ -150,7 +171,7 @@ if($db){
 
     <div class="container px-4 px-lg-5 w-100"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
 
-    <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+    
 
 </footer>
 <!-- Bootstrap core JS-->
