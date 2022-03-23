@@ -141,14 +141,13 @@ if (isset($_POST["btn-valider-edit"])){
 
     if(isset($_FILES["avatar_admin"])){
 
-        //répertoire de destination des images
+
         $repertoireImage = "assets/";
 
-        //répertoire de destination + composante finale d'un chemin (basename) avec en paramètres
-        //un tableau associatif multi dim $_FILES["image_produit"]["name"] (name = le nom de l'image)
+
         $avatar_admin = $repertoireImage . basename($_FILES["avatar_admin"]["name"]);
 
-        //Image téléchargée du formulaire ($_post) avec son répertoire, son nom et son image
+
         $_POST["avatar_admin"] = $avatar_admin;
 
         if(move_uploaded_file($_FILES["avatar_admin"]["tmp_name"], $avatar_admin)){
@@ -178,7 +177,7 @@ if (isset($_POST["btn-valider-edit"])){
 
 
     if($db){
-        $sql = "INSERT INTO `admins`(`identite_admin`, `email`, `password`, `avatar_admin`) VALUES (?,?,?,?,)";
+        $sql = "UPDATE `admins` SET `identite_admin`=?,`email`=?,`password`=?,`avatar_admin`=? WHERE id_admin = ?";
 
         $request = $db->prepare($sql);
 
@@ -186,8 +185,8 @@ if (isset($_POST["btn-valider-edit"])){
 
         $request->execute([
             $_POST["identite_admin"],
-            $_POST["email"],
-            $_POST["password"],
+            $_POST["email_admin"],
+            $_POST["password_admin"],
             $_POST["avatar_admin"],
             $id
 
@@ -242,5 +241,3 @@ if (isset($_POST["btn-valider-edit"])){
 <script src="js/scripts.js"></script>
 </body>
 </html>
-
-
