@@ -129,7 +129,7 @@ if($db){
                             <div><a href="editer_eleves.php?id_etudiant=<?=$details['id_etudiant']?>"class="btn btn-secondary btn-sm me-2">Editer</a></div>
                         
                         <form method="POST">
-                            <div><button type="submit" name="supprimer" class="btn btn-dark btn-sm me-2">Supprimer</button></div>
+                        <div><a href="supprimer_etudiant.php?id_etudiant=<?=$details['id_etudiant']?>"class="btn btn-secondary btn-sm me-2">Supprimer</a></div>
                         </form>
 
                         <div>

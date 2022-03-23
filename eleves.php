@@ -106,7 +106,7 @@ if($db){
                         <div class="card-footer d-flex">
                         <div><a class="btn btn-secondary btn-sm me-2" href="details_eleves.php?id_etudiant=<?=$infosPersos["id_etudiant"]?>">Plus d'infos</a></div>
                         <form method="POST">
-                            <div><button type="submit" name="supprimer" class="btn btn-dark btn-sm">Supprimer</button></div>
+                        <div><a class="btn btn-dark btn-sm me-2" href="supprimer_etudiant.php?id_etudiant=<?=$infosPersos["id_etudiant"]?>">Supprimer</a></div>
                         </form>
                         </div>
 
@@ -120,7 +120,7 @@ if($db){
 
     </div>
     <div class="container d-flex">
-    <div class="col-md-11 mb-5"><a class="btn btn-dark" href="ajouter_eleves.php">Ajouter élèves</a></div>
+    <div class="col-md-11 mb-5"><a class="btn btn-dark" href="ajouter_etudiant.php">Ajouter élèves</a></div>
     <div class="col-md-12 mb-5"><a class="btn btn-secondary" href="accueil.php">Retour</a></div>
     </div>
     
