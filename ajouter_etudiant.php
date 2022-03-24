@@ -195,7 +195,7 @@ if(isset($_SESSION["email"])){
         $sql = "INSERT INTO etudiants (id_etudiant, nom_etudiant, prenom_etudiant, adresse_etudiant, avatar_etudiant, date_naissance_etudiant, telephone_etudiant, email_etudiant, age_etudiant, formation_etudiant) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
 
-    //Je crée la préparation de la requête
+    //Je crée la préparation de la requête (lutte contre les injections SQL)
     $requeteAjout = $db->prepare($sql);
 
     //Je lie les paramètres entrés dans le formulaire à ma BD
