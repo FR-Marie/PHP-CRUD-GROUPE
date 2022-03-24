@@ -42,18 +42,18 @@ if(isset($_SESSION["email"])){
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="accueil.php">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="affichage_admins.php">Admins</a></li>
-                    <li class="nav-item"><a class="nav-link" href="affichage_formateurs.php">Formateurs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="eleves.php">Eleves</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                    <li class="nav-item me-5 p-1"><a class="nav-link active text-info" aria-current="page" href="accueil.php">Accueil</a></li>
+                    <li class="nav-item p-1"><a class="nav-link text-white" href="affichage_admins.php">Admins</a></li>
+                    <li class="nav-item p-1"><a class="nav-link text-white" href="affichage_formateurs.php">Formateurs</a></li>
+                    <li class="nav-item p-1"><a class="nav-link text-white" href="eleves.php">Eleves</a></li>
+                    <li class="nav-item ms-3 p-1"><a class="nav-link text-info" href="#!">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
 
-<!------------------------------------------------->
+    <!-------------------------CONNEXION A LA BD VIA LA CLASSE PDO------------------------>
 
     <?php
     $user = "root";
@@ -71,7 +71,7 @@ if(isset($_SESSION["email"])){
     ?>
 
 
-<!------------------------------------------------->
+    <!----------------------FORMULAIRE POUR AJOUTER UN FORMATEUR--------------------------->
 
     <div class="container-fluid">
         <div class="row" id="ajoutFormateurId">
@@ -157,16 +157,18 @@ if(isset($_SESSION["email"])){
 
         if(isset($_FILES["avatar_formateur"])){
 
-            //répertoire de destination des images
+            //REPERTOIRE DE DESTINATION DES IMAGES
             $repertoireImage = "assets/";
 
             //répertoire de destination + composante finale d'un chemin (basename) avec en paramètres
             //un tableau associatif multi dim $_FILES["image_produit"]["name"] (name = le nom de l'image)
             $avatar_formateur = $repertoireImage . basename($_FILES["avatar_formateur"]["name"]);
 
-            //Image téléchargée du formulaire ($_post) avec son répertoire, son nom et son image
+            //RECUP DE L'IMAGE téléchargée du formulaire ($_POST) avec son répertoire, son nom et son image
             $_POST["avatar_formateur"] = $avatar_formateur;
 
+
+            //////["tmp_name"]nom temporaire donné à l'image le temps de l'action (au cas où ça crash)
             if(move_uploaded_file($_FILES["avatar_formateur"]["tmp_name"], $avatar_formateur)){
                 ?>
                 <div class="alert alert-success w-50 m-auto text-center mt-5 mb-5">
@@ -193,7 +195,7 @@ if(isset($_SESSION["email"])){
         }
 
 
-
+////////REQUETE SQL POUR INSERER LE FORMATEUR A LA TABLE FORMATEURS LORS DE LA VALIDATION///////////
         $sql = "INSERT INTO formateurs (id_formateur, nom_formateur, prenom_formateur, adresse_formateur, avatar_formateur, date_naissance_formateur, telephone_formateur, email_formateur, age_formateur, matiere_formateur) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
 
@@ -213,11 +215,13 @@ if(isset($_SESSION["email"])){
     $requeteAjout->bindParam(10, $_POST["matiere_formateur"]);
 
 
+    ///Condition si les champs sont existants et remplis =>
     if(isset($_POST["nom_formateur"]) && !empty($_POST["nom_formateur"]) && isset($_POST["prenom_formateur"]) && !empty($_POST["prenom_formateur"]) && isset($_POST["adresse_formateur"]) && !empty($_POST["adresse_formateur"])
     && isset($_POST["avatar_formateur"]) && !empty($_POST["avatar_formateur"]) && isset($_POST["date_naissance_formateur"]) && !empty($_POST["date_naissance_formateur"]) && isset($_POST["telephone_formateur"]) && !empty($_POST["telephone_formateur"])
     && isset($_POST["email_formateur"]) && !empty($_POST["email_formateur"]) && isset($_POST["age_formateur"]) && !empty($_POST["age_formateur"]) && isset($_POST["matiere_formateur"]) && !empty($_POST["matiere_formateur"])){
 
-    //J'éxécute la requête
+
+    //J'éxécute la requête et je pense à désinfecter les champs du formulaire où il y a des chaînes de caractère
     $requeteAjout->execute([
     $_POST["id_formateur"],
     trim(htmlspecialchars($_POST["nom_formateur"])),

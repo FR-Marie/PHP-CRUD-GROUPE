@@ -42,11 +42,11 @@ if (isset($_POST["btn-deconnexion"])){
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="accueil.php">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="affichage_admins.php">Admins</a></li>
-                <li class="nav-item"><a class="nav-link" href="affichage_formateurs.php">Formateurs</a></li>
-                <li class="nav-item"><a class="nav-link" href="eleves.php">Eleves</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                <li class="nav-item me-5 p-1"><a class="nav-link active text-info" aria-current="page" href="accueil.php">Accueil</a></li>
+                <li class="nav-item p-1"><a class="nav-link text-white" href="affichage_admins.php">Admins</a></li>
+                <li class="nav-item p-1"><a class="nav-link text-white" href="affichage_formateurs.php">Formateurs</a></li>
+                <li class="nav-item p-1"><a class="nav-link text-white" href="eleves.php">Eleves</a></li>
+                <li class="nav-item ms-3 p-1"><a class="nav-link text-info" href="#!">Contact</a></li>
             </ul>
         </div>
     </div>

@@ -42,18 +42,18 @@ if (isset($_POST["btn-deconnexion"])){
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="accueil.php">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="affichage_admins.php">Admins</a></li>
-                <li class="nav-item"><a class="nav-link" href="affichage_formateurs.php">Formateurs</a></li>
-                <li class="nav-item"><a class="nav-link" href="eleves.php">Eleves</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                <li class="nav-item me-5 p-1"><a class="nav-link active text-info" aria-current="page" href="accueil.php">Accueil</a></li>
+                <li class="nav-item p-1"><a class="nav-link text-white" href="affichage_admins.php">Admins</a></li>
+                <li class="nav-item p-1"><a class="nav-link text-white" href="affichage_formateurs.php">Formateurs</a></li>
+                <li class="nav-item p-1"><a class="nav-link text-white" href="eleves.php">Eleves</a></li>
+                <li class="nav-item ms-3 p-1"><a class="nav-link text-info" href="#!">Contact</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
 
-<!------------------------------------------------->
+<!-------------------------CONNEXION A LA BD VIA LA CLASSE PDO------------------------>
 
 <?php
 $user = "root";
@@ -71,7 +71,7 @@ try {
 ?>
 
 
-<!------------------------------------------------->
+<!----------------------FORMULAIRE POUR AJOUTER UN ADMIN--------------------------->
 
 <div class="container-fluid">
     <div class="row" id="ajoutFormateurId">
@@ -123,7 +123,7 @@ try {
 <?php
 
 
-//INSERER LE NOUVEAU FORMATEUR
+//INSERER LE NOUVEL ADMIN
 
 if (isset($_POST["btn-valider-ajout"])){
 
@@ -132,16 +132,18 @@ if (isset($_POST["btn-valider-ajout"])){
 
         if(isset($_FILES["avatar_admin"])){
 
-            //répertoire de destination des images
+            //REPERTOIRE DE DESTINATION DES IMAGES
             $repertoireImage = "assets/";
 
             //répertoire de destination + composante finale d'un chemin (basename) avec en paramètres
             //un tableau associatif multi dim $_FILES["image_produit"]["name"] (name = le nom de l'image)
             $avatar_admin = $repertoireImage . basename($_FILES["avatar_admin"]["name"]);
 
-            //Image téléchargée du formulaire ($_post) avec son répertoire, son nom et son image
+            //RECUP DE L'IMAGE téléchargée du formulaire ($_POST) avec son répertoire, son nom et son image
             $_POST["avatar_admin"] = $avatar_admin;
 
+
+            //////["tmp_name"]nom temporaire donné à l'image le temps de l'action (au cas où ça crash)
             if(move_uploaded_file($_FILES["avatar_admin"]["tmp_name"], $avatar_admin)){
                 ?>
                 <div class="alert alert-success w-50 m-auto text-center mt-5 mb-5">
@@ -168,14 +170,14 @@ if (isset($_POST["btn-valider-ajout"])){
         }
 
 
-
+////////REQUETE SQL POUR INSERER L'ADMIN A LA TABLE ADMINS LORS DE LA VALIDATION///////////
         $sql = "INSERT INTO `admins`(`id_admin`, `identite_admin`, `email`, `password`, `avatar_admin`) VALUES (?,?,?,?,?)";
 
 
         //Je crée la préparation de la requête
         $requeteAjout = $db->prepare($sql);
 
-        //Je lie les paramètres entrés dans le formulaire à ma BD
+        //Je lie les paramètres entrés dans le formulaire à ceux de ma BD
         $requeteAjout->bindParam(1, $_POST["id_admin"]);
         $requeteAjout->bindParam(2, $_POST["identite_admin"]);
         $requeteAjout->bindParam(3, $_POST["email"]);
@@ -184,10 +186,11 @@ if (isset($_POST["btn-valider-ajout"])){
 
 
 
+        ///Condition si les champs sont existants et remplis =>
         if(isset($_POST["identite_admin"]) && !empty($_POST["identite_admin"]) && isset($_POST["email"]) && !empty($_POST["email"]) &&
             isset($_POST["password"]) && !empty($_POST["password"]) && isset($_POST["avatar_admin"]) && !empty($_POST["avatar_admin"])){
 
-            //J'éxécute la requête
+            //J'éxécute la requête et je pense à désinfecter les champs du formulaire où il y a des chaînes de caractère
             $requeteAjout->execute([
                 $_POST["id_admin"],
                 trim(htmlspecialchars($_POST["identite_admin"])),

@@ -23,7 +23,7 @@ if (isset($_POST["btn-deconnexion"])){
     <!-----bootstrap---->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Accueil ECOLE</title>
+    <title>Accueil</title>
 
 
     <!-- Favicon-->
@@ -35,31 +35,33 @@ if (isset($_POST["btn-deconnexion"])){
 
 
 
-<!-- Responsive navbar-->
+<!-----------------------NAVBAR------------------------------>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4">
     <div class="container px-5">
         <a class="navbar-brand" href="#!">☼ LYCEE HENRI-IV ☼</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="accueil.php">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="affichage_admins.php">Admins</a></li>
-                <li class="nav-item"><a class="nav-link" href="affichage_formateurs.php">Formateurs</a></li>
-                <li class="nav-item"><a class="nav-link" href="eleves.php">Eleves</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                <li class="nav-item me-5 p-1"><a class="nav-link active text-info" aria-current="page" href="accueil.php">Accueil</a></li>
+                <li class="nav-item p-1"><a class="nav-link text-white" href="affichage_admins.php">Admins</a></li>
+                <li class="nav-item p-1"><a class="nav-link text-white" href="affichage_formateurs.php">Formateurs</a></li>
+                <li class="nav-item p-1"><a class="nav-link text-white" href="eleves.php">Eleves</a></li>
+                <li class="nav-item ms-3 p-1"><a class="nav-link text-info" href="#!">Contact</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
 
-<!-- Page Content-->
+<!----------------------PAGE------------------------->
 <div class="container px-4 px-lg-5">
     <!-- Heading Row-->
     <div class="row gx-4 gx-lg-5 align-items-center my-5">
         <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="assets/logo-lycee-henri4-500.jpg" alt="..." /></div>
         <div class="col-lg-5">
                 <?php
+
+////////////////////////SI L'ADMIN EST CONNECTE - MESSAGE PERSONNALISE DE BIENVENUE////////////////////////
                 if (isset($_SESSION["email"])){
                     ?>
                     <div class="bg-dark p-5 text-center">
@@ -79,12 +81,14 @@ if (isset($_POST["btn-deconnexion"])){
 
         </div>
     </div>
-    <!-- Call to Action -->
+    <!------------------------ACCES A LA GESTION DES 3 BLOCS (ADMINS / FORMATEURS / ETUDIANTS)-->
     <div class="card text-white bg-dark my-5 py-4 text-center">
         <div class="card-body"><p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p></div>
     </div>
-    <!-- Content Row-->
+
     <div class="row gx-4 gx-lg-5">
+
+        <!----------------------------ADMINS------------------------------->
         <div class="col-md-4 mb-5">
             <div class="card h-100 bg-secondary text-white">
                 <div class="card-body">
@@ -94,6 +98,8 @@ if (isset($_POST["btn-deconnexion"])){
                 <div class="card-footer p-3"><a class="btn btn-info btn-sm" href="affichage_admins.php">Gérer admins</a></div>
             </div>
         </div>
+
+        <!-----------------------------FORMATEURS------------------------------>
         <div class="col-md-4 mb-5">
             <div class="card h-100 bg-secondary text-white">
                 <div class="card-body">
@@ -103,6 +109,9 @@ if (isset($_POST["btn-deconnexion"])){
                 <div class="card-footer p-3"><a class="btn btn-info btn-sm" href="affichage_formateurs.php">Gérer formateurs</a></div>
             </div>
         </div>
+
+
+        <!-----------------------------ETUDIANTS------------------------------>
         <div class="col-md-4 mb-5">
             <div class="card h-100 bg-secondary text-white">
                 <div class="card-body">
@@ -130,7 +139,7 @@ if (isset($_POST["btn-deconnexion"])){
 
 ?>
 
-<!-- Footer-->
+<!----------------------------FOOTER------------------------------->
 <footer class="py-5 bg-dark">
     <div class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container px-5">

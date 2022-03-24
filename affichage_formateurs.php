@@ -42,18 +42,18 @@ if (isset($_POST["btn-deconnexion"])){
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="accueil.php">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="affichage_admins.php">Admins</a></li>
-                <li class="nav-item"><a class="nav-link" href="affichage_formateurs.php">Formateurs</a></li>
-                <li class="nav-item"><a class="nav-link" href="eleves.php">Eleves</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                <li class="nav-item me-5 p-1"><a class="nav-link active text-info" aria-current="page" href="accueil.php">Accueil</a></li>
+                <li class="nav-item p-1"><a class="nav-link text-white" href="affichage_admins.php">Admins</a></li>
+                <li class="nav-item p-1"><a class="nav-link text-white" href="affichage_formateurs.php">Formateurs</a></li>
+                <li class="nav-item p-1"><a class="nav-link text-white" href="eleves.php">Eleves</a></li>
+                <li class="nav-item ms-3 p-1"><a class="nav-link text-info" href="#!">Contact</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
 
-<!-------------------------SQL POUR INFOS PERSONNELLES------------------------>
+<!-------------------------CONNEXION A LA BD VIA LA CLASSE PDO------------------------>
 
 <?php
 $user = "root";
@@ -73,14 +73,16 @@ try {
 if($db){
     $sql = "SELECT * FROM formateurs";
     $statement = $db->query($sql);
-
+/////////////->query PERMET DE RECUP UNE TABLE DE LA BD PUIS UTILISITATION D'UNE BOUCLE FOR EACH POUR AFFICHER SON CONTENU
 }
 ?>
 
 
-<!-------------------------AFFICHAGE INFOS PERSONNELLES------------------------>
+<!-------------------------PAGE AFFICHAGE DES FORMATEURS------------------------>
 <div class="container mt-5">
     <div class="d-flex justify-content-around">
+
+        <!-------------------------BTN POUR AJOUTER UN FORMATEUR A LA BD------------------------>
         <a href="ajouter_formateur.php" class="btn btn-outline-info mb-5"> Ajouter formateur</a>
     </div>
 
@@ -92,7 +94,7 @@ if($db){
         <h2 class="text-center mb-5">Les formateurs</h2>
 
 
-        <!----------------------IDENTIFIANTS----------------------->
+        <!----------------------AFFICHAGE DES FORMATEURS GRACE A LA BOUCLE FOR EACH----------------------->
 
             <?php
             foreach ($statement as $infosPersos){
