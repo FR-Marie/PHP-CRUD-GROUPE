@@ -161,7 +161,7 @@ if(isset($_SESSION["email"])){
             $repertoireImage = "assets/";
 
             //répertoire de destination + composante finale d'un chemin (basename) avec en paramètres
-            //un tableau associatif multi dim $_FILES["image_produit"]["name"] (name = le nom de l'image)
+            //un tableau associatif multi dim $_FILES["avatar_formateur"]["name"] (name = le nom de l'image)
             $avatar_formateur = $repertoireImage . basename($_FILES["avatar_formateur"]["name"]);
 
             //RECUP DE L'IMAGE téléchargée du formulaire ($_POST) avec son répertoire, son nom et son image
@@ -199,10 +199,10 @@ if(isset($_SESSION["email"])){
         $sql = "INSERT INTO formateurs (id_formateur, nom_formateur, prenom_formateur, adresse_formateur, avatar_formateur, date_naissance_formateur, telephone_formateur, email_formateur, age_formateur, matiere_formateur) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
 
-    //Je crée la préparation de la requête
+    //Je crée la préparation de la requête (lutte contre les injections SQL)
     $requeteAjout = $db->prepare($sql);
 
-    //Je lie les paramètres entrés dans le formulaire à ma BD
+    //Je lie les paramètres entrés dans le formulaire à ma ceux de ma BD
     $requeteAjout->bindParam(1, $_POST["id_formateur"]);
     $requeteAjout->bindParam(2, $_POST["nom_formateur"]);
     $requeteAjout->bindParam(3, $_POST["prenom_formateur"]);

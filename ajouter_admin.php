@@ -174,7 +174,7 @@ if (isset($_POST["btn-valider-ajout"])){
         $sql = "INSERT INTO `admins`(`id_admin`, `identite_admin`, `email`, `password`, `avatar_admin`) VALUES (?,?,?,?,?)";
 
 
-        //Je crée la préparation de la requête
+        //Je crée la préparation de la requête (lutte contre les injections SQL)
         $requeteAjout = $db->prepare($sql);
 
         //Je lie les paramètres entrés dans le formulaire à ceux de ma BD

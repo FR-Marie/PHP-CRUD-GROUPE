@@ -52,7 +52,7 @@ if (isset($_POST["btn-deconnexion"])){
     </div>
 </nav>
 
-
+<!-------------------------CONNEXION A LA BD VIA LA CLASSE PDO------------------------>
 <?php
 $user = "root";
 $pass = "";
@@ -76,17 +76,23 @@ if($db){
     $sql = "SELECT * FROM admins WHERE id_admin = ?";
     $adminID = $_GET["id_admin"];
 
+    //je prépare la requête (lutte contre les injections SQL
     $request = $db->prepare($sql);
+
+    //je lie les paramètres (ce qui est entré dans le formulaire AVEC la table de la BD
     $request->bindParam(1, $adminID);
 
+    //je lance l'éxécution de la requête
     $request->execute();
 
+    //la fonction fetch me permet de récupérer l'élément de la table que je souhaite afficher
+    //la variable $admin_edit me permettra d'appeler les éléments de mon entrée (mon entrée = élément de ma table)
     $admin_edit = $request->fetch(PDO::FETCH_ASSOC);
 }
 
 ?>
 
-<!------------------FORMULAIRE D'EDITION DU PRODUIT------------------>
+<!------------------FORMULAIRE D'EDITION DE L'ADMIN------------------>
 
 <div class="container-fluid">
     <div class="row">
@@ -140,17 +146,22 @@ if($db){
 
 if (isset($_POST["btn-valider-edit"])){
 
+    ///// TRAITEMENT DE L'IMAGE (/!\ ne pas oublier l'input de type FILE dans le formulaire /!\)
     if(isset($_FILES["avatar_admin"])){
 
-
+        //REPERTOIRE DE DESTINATION DES IMAGES
         $repertoireImage = "assets/";
 
 
+        //répertoire de destination + composante finale d'un chemin (basename) avec en paramètres
+        //un tableau associatif multi dim $_FILES["avatar_admin"]["name"] (name = le nom de l'image)
         $avatar_admin = $repertoireImage . basename($_FILES["avatar_admin"]["name"]);
 
 
+        //RECUP DE L'IMAGE téléchargée du formulaire ($_POST) avec son répertoire, son nom et son image
         $_POST["avatar_admin"] = $avatar_admin;
 
+        //////["tmp_name"]nom temporaire donné à l'image le temps de l'action (au cas où ça crash)
         if(move_uploaded_file($_FILES["avatar_admin"]["tmp_name"], $avatar_admin)){
             ?>
             <div class="alert alert-success w-50 m-auto">
@@ -178,19 +189,23 @@ if (isset($_POST["btn-valider-edit"])){
 
 
     if($db){
+        ///// id_admin = ?   SIGNIFIE  que l'id_admin sera égal à l'id clé primaire de ma table de ma BD
         $sql = "UPDATE `admins` SET `identite_admin`=?,`email`=?,`password`=?,`avatar_admin`=? WHERE id_admin = ?";
 
+        //Je crée la préparation de la requête (lutte contre les injections SQL)
         $request = $db->prepare($sql);
 
+        //Pour éviter les erreurs PHP (fameux tableau orange!!) je crée une variable $id et lui donne comme valeur l'id de l'url ($_GET)
+        //j'utiliserais ensuite cette varaible dans mon tableau pour l'éxécution de la requête (juste en dessous)
         $id = $_GET["id_admin"];
 
+        //ma requête s'éxécute dans un tableau
         $request->execute([
             $_POST["identite_admin"],
             $_POST["email_admin"],
             $_POST["password_admin"],
             $_POST["avatar_admin"],
             $id
-
         ]);
 
         if($request){
