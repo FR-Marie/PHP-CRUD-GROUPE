@@ -42,17 +42,17 @@ if (isset($_POST["btn-deconnexion"])){
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="accueil.php">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="affichage_admins.php">Admins</a></li>
-                <li class="nav-item"><a class="nav-link" href="affichage_formateurs.php">Formateurs</a></li>
-                <li class="nav-item"><a class="nav-link" href="eleves.php">Eleves</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                <li class="nav-item me-5 p-1"><a class="nav-link active text-info" aria-current="page" href="accueil.php">Accueil</a></li>
+                <li class="nav-item p-1"><a class="nav-link text-white" href="affichage_admins.php">Admins</a></li>
+                <li class="nav-item p-1"><a class="nav-link text-white" href="affichage_formateurs.php">Formateurs</a></li>
+                <li class="nav-item p-1"><a class="nav-link text-white" href="eleves.php">Eleves</a></li>
+                <li class="nav-item ms-3 p-1"><a class="nav-link text-info" href="#!">Contact</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-
+<!-------------------------CONNEXION A LA BD VIA LA CLASSE PDO------------------------>
     <?php
     $user = "root";
     $pass = "";
@@ -71,15 +71,27 @@ if (isset($_POST["btn-deconnexion"])){
 
     if($db){
         $sql = "SELECT * FROM formateurs WHERE id_formateur = ?";
+
+        //////////je recupère l'id dans l'url
+        ///cet id est aussi utilisé dansl l'url qui amène à cette page pour afficher le contenu désiré
         $produitID = $_GET["id_formateur"];
 
+
+        //je prépare la requête lutte contre les injections SQL
         $request = $db->prepare($sql);
+
+        //je lie les paramètres soit l'id formateur et l'id utilisé dans l'url
         $request->bindParam(1, $produitID);
 
+        //je lance l'éxécution de la requête qui retourne un tableau clef valeur
         $request->execute();
 
+
+        //la fonction fetch me permet de récupérer l'élément de la table que je souhaite afficher
+        //la variable $details me permettra d'appeler les éléments de mon entrée
         $details = $request->fetch(PDO::FETCH_ASSOC);
 
+        //variable pour la date de naissance pour ensuite lui donner le format voulu (format français)
         $dateDeNaissance = new DateTime($details["date_naissance_formateur"]);
     }
     ?>
